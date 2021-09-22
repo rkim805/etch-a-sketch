@@ -7,6 +7,7 @@ window.onload = function() {
   createPixels(gridSize);
 
   const slideLabel = document.querySelector("#slide-label");
+  document.querySelector("#color-btn").style.backgroundColor = DEFAULT_COLOR;
   slideLabel.innerText = `${gridSize} x ${gridSize}`
 
   addButtonListeners();
@@ -35,7 +36,6 @@ function createPixels(gridSize) {
     for(let j = 0; j < gridSize; j++) {
       let pixel = document.createElement("div");
       pixel.classList.add("pixel");
-      pixel.id = `pixel${i}-${j}`;
 
       //calculate width of each pixel based on container's width.
       pixel.style.width = `${container.clientWidth/gridSize}px`
@@ -56,26 +56,13 @@ function createPixels(gridSize) {
 
 /**
  * removePixels()
- * Function to remove divs from container when clearing/resizing the canvas.
+ * Function to clear the canvas.
  */
 function removePixels() {
   const container = document.querySelector(".container");
   while(container.firstChild) {
     container.removeChild(container.firstChild);
   }
-}
-
-function addButtonListeners() {
-  const rainBtn = document.querySelector("#rainBtn");
-  const eraseBtn = document.querySelector("#eraseBtn");
-
-  rainBtn.addEventListener("click", () => {
-    currentColor = "rainbow";
-  })
-
-  eraseBtn.addEventListener("click", () => {
-    currentColor = "white";
-  })
 }
 
 function randRGB() {
@@ -86,6 +73,27 @@ function randRGB() {
   return `rgb(${rVal},${gVal},${bVal})`;
 }
 
+function addButtonListeners() {
+  const rainBtn = document.querySelector("#rain-btn");
+  const eraseBtn = document.querySelector("#erase-btn");
+  const colorBtn = document.querySelector("#color-btn");
+  const colorInput = document.querySelector("#color-picker");
+
+  rainBtn.addEventListener("click", () => {
+    currentColor = "rainbow";
+  })
+
+  eraseBtn.addEventListener("click", () => {
+    currentColor = "white";
+  })
+
+  colorInput.addEventListener("change", () => {
+    currentColor = colorInput.value;
+    colorBtn.style.backgroundColor = colorInput.value;
+  })
+}
+
+
 function addSliderListener() {
   const slider= document.querySelector('.slider');
   const slideLabel = document.querySelector("#slide-label");
@@ -93,6 +101,7 @@ function addSliderListener() {
   slider.addEventListener("mouseup", () => {
     gridSize = slider.value;
     slideLabel.innerText = `${gridSize} x ${gridSize}`
+    //remove current grid and redraw with newly selected size
     removePixels();
     createPixels(gridSize);
   })
