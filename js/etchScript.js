@@ -11,7 +11,12 @@ function createPixels(gridSize) {
       pixel.classList.add("pixel");
       pixel.id = `pixel${i+ '-' + j}`;
       columnDiv.appendChild(pixel);
+
+      pixel.addEventListener("mouseover", () => {
+        pixel.classList.add("lit-up");
+      })
     }
     container.appendChild(columnDiv);
   }
 }
+
