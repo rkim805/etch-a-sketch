@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>Etch-A-Sketch!</h1>
-    <p>Move your mouse around below to draw an image. <br>
-      Hit the New Sketch button to reset the canvas and 
-      change the size!</p>
-    <div class="button-container">
-    <button>New Sketch</button>
+    <header>
+      <h1>Etch-A-Sketch!</h1>
+      <p>Move your mouse around below to draw an image.</p>
+    </header>
+    <div id="slider-container">
+      <input type="range" min="1" max="100" value="16" class="slider">
+      <br>
+      <label id="slide-label"></label>
     </div>
     <div class="content-container">
       <div class="container">

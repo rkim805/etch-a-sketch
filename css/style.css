@@ -52,19 +52,18 @@ button {
 }
 
 .row-container {
-  height: calc(100%/16);
+  /*height: calc(100%/16);*/
   width: 100%;
   display: flex;
 }
 
 .pixel {
   height: 100%;
-  width: calc(100%/16);
-  background-color: black;
+  background-color: white;
 }
 
 .lit-up {
-  background-color: white;
+  background-color: black;
 }
 
 button {
