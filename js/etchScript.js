@@ -1,22 +1,17 @@
-const container = document.querySelector(".container");
-const sliderContainer = document.querySelector("#slider-container");
-const slider= document.querySelector('.slider');
-const slideLabel = document.querySelector("#slide-label");
+const DEFAULT_COLOR = "black";
+const DEFAULT_NUM = 16;
+let currentColor = DEFAULT_COLOR;
 
-
-let gridSize = 16;
-createPixels(gridSize);
-slideLabel.innerText = `${gridSize} x ${gridSize}`
-
-
-//redraw grid when different size chosen
-slider.addEventListener("mouseup", () => {
-  gridSize = slider.value;
-  slideLabel.innerText = `${gridSize} x ${gridSize}`
-  removePixels();
+window.onload = function() {
+  let gridSize = DEFAULT_NUM;
   createPixels(gridSize);
-})
 
+  const slideLabel = document.querySelector("#slide-label");
+  slideLabel.innerText = `${gridSize} x ${gridSize}`
+
+  addButtonListeners();
+  addSliderListener();
+}
 
 
 /**
@@ -29,6 +24,7 @@ slider.addEventListener("mouseup", () => {
  * @param {number} gridSize -- creates gridSize x gridSize number of pixels
  */
 function createPixels(gridSize) {
+  const container = document.querySelector(".container");
   for(let i = 0; i < gridSize; i++) {
     let rowDiv = document.createElement("div");
     rowDiv.classList.add("row-container", `row${i}`);
@@ -39,13 +35,14 @@ function createPixels(gridSize) {
     for(let j = 0; j < gridSize; j++) {
       let pixel = document.createElement("div");
       pixel.classList.add("pixel");
+      pixel.id = `pixel${i}-${j}`;
 
       //calculate width of each pixel based on container's width.
       pixel.style.width = `${container.clientWidth/gridSize}px`
       rowDiv.appendChild(pixel);
 
       pixel.addEventListener("mouseover", () => {
-        pixel.classList.add("lit-up");
+        pixel.style.backgroundColor = currentColor;
       })
     }
     container.appendChild(rowDiv);
@@ -57,7 +54,25 @@ function createPixels(gridSize) {
  * Function to remove divs from container when clearing/resizing the canvas.
  */
 function removePixels() {
+  const container = document.querySelector(".container");
   while(container.firstChild) {
     container.removeChild(container.firstChild);
   }
+}
+
+function addButtonListeners() {
+  const rainBtn = document.querySelector("#rainBtn");
+  const eraseBtn = document.querySelector("#eraseBtn");
+}
+
+function addSliderListener() {
+  const slider= document.querySelector('.slider');
+  const slideLabel = document.querySelector("#slide-label");
+
+  slider.addEventListener("mouseup", () => {
+    gridSize = slider.value;
+    slideLabel.innerText = `${gridSize} x ${gridSize}`
+    removePixels();
+    createPixels(gridSize);
+  })
 }
