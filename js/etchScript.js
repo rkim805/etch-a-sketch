@@ -42,7 +42,12 @@ function createPixels(gridSize) {
       rowDiv.appendChild(pixel);
 
       pixel.addEventListener("mouseover", () => {
-        pixel.style.backgroundColor = currentColor;
+        if(currentColor == "rainbow") {
+          pixel.style.backgroundColor = randRGB();
+        }
+        else {
+          pixel.style.backgroundColor = currentColor;
+        }
       })
     }
     container.appendChild(rowDiv);
@@ -63,6 +68,22 @@ function removePixels() {
 function addButtonListeners() {
   const rainBtn = document.querySelector("#rainBtn");
   const eraseBtn = document.querySelector("#eraseBtn");
+
+  rainBtn.addEventListener("click", () => {
+    currentColor = "rainbow";
+  })
+
+  eraseBtn.addEventListener("click", () => {
+    currentColor = "white";
+  })
+}
+
+function randRGB() {
+  let rVal = Math.floor(Math.random() * 255);
+  let gVal = Math.floor(Math.random() * 255);
+  let bVal = Math.floor(Math.random() * 255);
+
+  return `rgb(${rVal},${gVal},${bVal})`;
 }
 
 function addSliderListener() {
