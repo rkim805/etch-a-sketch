@@ -78,6 +78,7 @@ function addButtonListeners() {
   const eraseBtn = document.querySelector("#erase-btn");
   const colorBtn = document.querySelector("#color-btn");
   const colorInput = document.querySelector("#color-picker");
+  const clearBtn = document.querySelector("#clear-btn");
 
   rainBtn.addEventListener("click", () => {
     currentColor = "rainbow";
@@ -90,6 +91,13 @@ function addButtonListeners() {
   colorInput.addEventListener("change", () => {
     currentColor = colorInput.value;
     colorBtn.style.backgroundColor = colorInput.value;
+  })
+
+  clearBtn.addEventListener("click", () => {
+    const slider= document.querySelector('.slider');
+    let gridSize = slider.value;
+    removePixels();
+    createPixels(gridSize);
   })
 }
 
