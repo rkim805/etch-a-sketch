@@ -1,6 +1,7 @@
 const DEFAULT_COLOR = "black";
 const DEFAULT_NUM = 16;
 let currentColor = DEFAULT_COLOR;
+let currentMode = "color-btn";
 
 window.onload = function() {
   let gridSize = DEFAULT_NUM;
@@ -42,11 +43,14 @@ function createPixels(gridSize) {
       rowDiv.appendChild(pixel);
 
       pixel.addEventListener("mouseover", () => {
-        if(currentColor == "rainbow") {
+        if(currentMode === "rain-btn") {
           pixel.style.backgroundColor = randRGB();
         }
-        else {
+        else if(currentMode === "color-btn") {
           pixel.style.backgroundColor = currentColor;
+        }
+        else if(currentMode === "eraser-btn") {
+          pixel.style.backgroundColor = "white";
         }
       })
     }
@@ -78,23 +82,25 @@ function addButtonListeners() {
   const eraseBtn = document.querySelector("#erase-btn");
   const colorBtn = document.querySelector("#color-btn");
   const colorInput = document.querySelector("#color-picker");
+  const colorInputBtn = document.querySelector("#color-selector");
   const clearBtn = document.querySelector("#clear-btn");
 
   rainBtn.addEventListener("click", () => {
-    currentColor = "rainbow";
+    currentMode = "rain-btn";
     rainBtn.classList.add("selected");
     eraseBtn.classList.remove("selected");
     colorBtn.classList.remove("selected");
   })
 
   eraseBtn.addEventListener("click", () => {
-    currentColor = "white";
+    currentMode = "eraser-btn";
     eraseBtn.classList.add("selected");
     rainBtn.classList.remove("selected");
     colorBtn.classList.remove("selected");
   })
 
   colorBtn.addEventListener("click", () => {
+    currentMode = "color-btn";
     colorBtn.classList.add("selected");
     eraseBtn.classList.remove("selected");
     rainBtn.classList.remove("selected");
@@ -102,7 +108,8 @@ function addButtonListeners() {
 
   colorInput.addEventListener("change", () => {
     currentColor = colorInput.value;
-    colorBtn.style.backgroundColor = colorInput.value;
+    colorInput.style.backgroundColor = colorInput.value;
+    colorInputBtn.style.backgroundColor = colorInput.value;
   })
 
   clearBtn.addEventListener("click", () => {
