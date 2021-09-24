@@ -76,16 +76,28 @@ function randRGB() {
 function addButtonListeners() {
   const rainBtn = document.querySelector("#rain-btn");
   const eraseBtn = document.querySelector("#erase-btn");
-  const colorBtn = document.querySelector("#color-selector");
+  const colorBtn = document.querySelector("#color-btn");
   const colorInput = document.querySelector("#color-picker");
   const clearBtn = document.querySelector("#clear-btn");
 
   rainBtn.addEventListener("click", () => {
     currentColor = "rainbow";
+    rainBtn.classList.add("selected");
+    eraseBtn.classList.remove("selected");
+    colorBtn.classList.remove("selected");
   })
 
   eraseBtn.addEventListener("click", () => {
     currentColor = "white";
+    eraseBtn.classList.add("selected");
+    rainBtn.classList.remove("selected");
+    colorBtn.classList.remove("selected");
+  })
+
+  colorBtn.addEventListener("click", () => {
+    colorBtn.classList.add("selected");
+    eraseBtn.classList.remove("selected");
+    rainBtn.classList.remove("selected");
   })
 
   colorInput.addEventListener("change", () => {
