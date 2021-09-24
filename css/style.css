@@ -29,6 +29,18 @@ body{
   justify-content: center;
 }
 
+#sidebar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+}
+
+#body {
+  display: flex;
+  justify-content: center;;
+}
 
 button {
   background-color: #05386B;
@@ -76,14 +88,14 @@ button {
   width: 100px;
 }
 
-#color-btn {
+#color-selector {
   border-radius: 50%;
   border-style: outset;
   border-width: 2px;
   color: white;
   width: 75px;
   height: 75px;
-  margin-right: 30px;
+  margin-top: 10px;
 }
 
 #color-picker {

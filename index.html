@@ -11,22 +11,21 @@
       <h1>Etch-A-Sketch!</h1>
       <p>Move your mouse around below to draw an image</p>
     </header>
-    <div id="slider-container">
-      <input type="range" min="1" max="100" value="16" class="slider">
-      <br>
-      <label id="slide-label"></label>
-    </div>
-    <div class="button-container">
-      <label id="color-btn">
-        <input id="color-picker" type="color" value="black">
-      </label>
-      <button id="rain-btn">Rainbow Mode</button>
-      <button id="erase-btn">Eraser</button>
-      <button id="clear-btn">Clear</button>
-    </div>
-    <div class="content-container">
-      <div class="container">
+    <div id="body">
+      <div id="sidebar-container">
+        <input type="range" min="1" max="100" value="16" class="slider">
+        <label id="slide-label"></label>
+          <label id="color-selector">
+            <input id="color-picker" type="color" value="black">
+          </label>
+          <button id="rain-btn">Rainbow Mode</button>
+          <button id="erase-btn">Eraser</button>
+          <button id="clear-btn">Clear</button>
       </div>
-    </div>
+      <div class="content-container">
+        <div class="container">
+        </div>
+      </div>
+  </div>
   </body>
 </html>

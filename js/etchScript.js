@@ -7,7 +7,7 @@ window.onload = function() {
   createPixels(gridSize);
 
   const slideLabel = document.querySelector("#slide-label");
-  document.querySelector("#color-btn").style.backgroundColor = DEFAULT_COLOR;
+  document.querySelector("#color-selector").style.backgroundColor = DEFAULT_COLOR;
   slideLabel.innerText = `${gridSize} x ${gridSize}`
 
   addButtonListeners();
@@ -76,7 +76,7 @@ function randRGB() {
 function addButtonListeners() {
   const rainBtn = document.querySelector("#rain-btn");
   const eraseBtn = document.querySelector("#erase-btn");
-  const colorBtn = document.querySelector("#color-btn");
+  const colorBtn = document.querySelector("#color-selector");
   const colorInput = document.querySelector("#color-picker");
   const clearBtn = document.querySelector("#clear-btn");
 
