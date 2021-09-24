@@ -14,27 +14,47 @@ h1{
 
 p {
   font-size: 26px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 body{
-  display: flex;
-  flex-direction: column;
-  align-content: center;
   text-align: center;
+}
+
+#body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column-reverse;
 }
 
 .content-container {
   display: flex;
   justify-content: center;
+  width: 240px;
+  height: 240px;
+  box-sizing: border-box;
 }
+
+@media screen and (min-width: 480px){
+  #body {
+    flex-flow: row;
+    gap: 80px;
+  }
+
+  .content-container {
+    width: 480px;
+    height: 480px;
+  }
+}
+
 
 #sidebar-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 10%;
+  width: 100px;
 }
 
 #body {
@@ -43,7 +63,6 @@ body{
 }
 
 button {
-  /*background-color: #05386B;*/
   background-color: #B9B9A0;
   color: black;
   border: solid;
@@ -63,8 +82,9 @@ button:hover, button.selected {
 }
 
 .container {
-  height: 480px;
-  width: 480px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
   border-style: ridge;
   border-width: 10px;
   border-color: brown;

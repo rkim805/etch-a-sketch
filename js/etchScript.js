@@ -13,6 +13,22 @@ window.onload = function() {
 
   addButtonListeners();
   addSliderListener();
+  addResizeListener(gridSize);
+}
+
+function addResizeListener(gridSize) {
+  window.addEventListener("resize", ()=> {
+    console.log('test');
+    let rows = document.querySelectorAll('.row-container');
+    let pixels = document.querySelectorAll('.pixel');
+    const container = document.querySelector(".container");
+    rows.forEach((row) => {
+      row.style.height = `${container.clientHeight/gridSize}px`;
+    })
+    pixels.forEach((pixel) => {
+      pixel.style.width = `${container.clientWidth/gridSize}px`;
+    })
+  });
 }
 
 
@@ -32,14 +48,14 @@ function createPixels(gridSize) {
     rowDiv.classList.add("row-container", `row${i}`);
 
     //calculate height of each row based on container's height.
-    rowDiv.style.height = `${container.clientHeight/gridSize}px`
+    rowDiv.style.height = `${container.clientHeight/gridSize}px`;
 
     for(let j = 0; j < gridSize; j++) {
       let pixel = document.createElement("div");
       pixel.classList.add("pixel");
 
       //calculate width of each pixel based on container's width.
-      pixel.style.width = `${container.clientWidth/gridSize}px`
+      pixel.style.width = `${container.clientWidth/gridSize}px`;
       rowDiv.appendChild(pixel);
 
       pixel.addEventListener("mouseover", () => {
